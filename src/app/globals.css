@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Palett «Granskog»: granskog og molte. Alle farger defineres her – bytt verdiene
+   for å endre hele siden. Tekstfargene holder minst 4.5:1 mot paper og mist (WCAG AA). */
+@theme {
+  --color-paper: #ffffff;
+  --color-mist: #f3f5f0;
+  --color-line: #e1e6dc;
+  --color-ink: #1a1f1b;
+  --color-muted: #5a635c;
+  --color-primary: #1f3d2e;
+  --color-accent: #2e6b4b;
+  /* Kun dekor (fyll, prikker, understreking) – aldri tekst på hvit */
+  --color-highlight: #f0b443;
+
+  --color-hero-0: #11241a;
+  --color-hero-1: #1f3d2e;
+  --color-hero-2: #3f6b51;
+  --color-hero-3: #a9c29a;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-instrument), "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ::selection {
+    @apply bg-highlight text-ink;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+}
+
+/* Innholdsbredde fra papermorph: maks 1200px, minst 16px marg */
+@utility wrap {
+  padding-inline: max(16px, calc(50% - 600px));
+}
+
+/* Stor, lett overskrift (papermorph hero) */
+@utility display {
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+@utility kicker {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility hero-bg {
+  background:
+    radial-gradient(70% 90% at 100% 100%, color-mix(in srgb, var(--color-highlight) 55%, transparent), transparent 62%),
+    radial-gradient(60% 80% at 90% 40%, color-mix(in srgb, var(--color-hero-3) 60%, transparent), transparent 66%),
+    linear-gradient(
+      162deg,
+      var(--color-hero-0) 0%,
+      var(--color-hero-1) 42%,
+      var(--color-hero-2) 80%,
+      var(--color-hero-3) 100%
+    );
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes float {
+  to {
+    transform: translate(-14px, 12px);
+  }
+}
+
+.rise {
+  animation: rise 0.9s var(--ease-out-soft) backwards;
+}
+.float {
+  animation: float 11s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .float {
+    animation: none;
+  }
+}
