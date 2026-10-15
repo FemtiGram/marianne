@@ -2,6 +2,8 @@
 
 Personlig portefølje for Marianne Hebnes. Bygget med Next.js og Tailwind CSS, hostet gratis på Vercel.
 
+**Første gang?** Følg [HANDOVER.md](HANDOVER.md) – helst sammen med Claude Code – for å installere verktøyene og få siden over på din egen GitHub- og Vercel-konto.
+
 ## Endre innhold
 
 All tekst ligger i `src/content/` – du trenger ikke røre sidene for å endre innhold:
